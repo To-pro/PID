@@ -116,13 +116,15 @@ public:
     void Updata(double e_set,double alpha,double beta){
         e = e_set;
         de = (e-e_pre)/T;
-        #ifdef intergal_dead_zone_flag
+        if(intergal_flag == 1){
+            #ifdef intergal_dead_zone_flag
             if(fabs(e)>intergal_dead_zone){
                 intergal_anti_windup();
             }
-        #else
-            intergal_anti_windup();
-        #endif
+            #else
+                intergal_anti_windup();
+            #endif
+        }
         u_d = alpha*(kp*e + u_i + kd*de+beta);
         if(fabs(u_d)>=u_max*0.99){
             u = sign(u_d)*u_max;
@@ -135,13 +137,15 @@ public:
     void Updata(double e_set){//asume alpha = 1;beta = 0;
         e = e_set;
         de = (e-e_pre)/T;
-        #ifdef intergal_dead_zone_flag
+        if(intergal_flag == 1){
+            #ifdef intergal_dead_zone_flag
             if(fabs(e)>intergal_dead_zone){
                 intergal_anti_windup();
             }
-        #else
-            intergal_anti_windup();
-        #endif
+            #else
+                intergal_anti_windup();
+            #endif
+        }
         u_d = kp*e + u_i + kd*de;
         if(fabs(u_d)>=u_max*0.99){
             u = sign(u_d)*u_max;
@@ -154,13 +158,15 @@ public:
     void Updata(double e_set ,double de_set ,double alpha,double beta){// u = alpha*(kp*e + u_i + kd*de+beta)
         e = e_set;
         de = de_set;
-        #ifdef intergal_dead_zone_flag
+        if(intergal_flag == 1){
+            #ifdef intergal_dead_zone_flag
             if(fabs(e)>intergal_dead_zone){
                 intergal_anti_windup();
             }
-        #else
-            intergal_anti_windup();
-        #endif
+            #else
+                intergal_anti_windup();
+            #endif
+        }
         u_d = alpha*(kp*e + u_i + kd*de+beta);
         if(fabs(u_d)>=u_max*0.99){
             u = sign(u_d)*u_max;
@@ -173,13 +179,15 @@ public:
     void Updata(double e_set,double de_set){//asume alpha = 1;beta = 0;
         e = e_set;
         de = de_set;
-        #ifdef intergal_dead_zone_flag
+        if(intergal_flag == 1){
+            #ifdef intergal_dead_zone_flag
             if(fabs(e)>intergal_dead_zone){
                 intergal_anti_windup();
             }
-        #else
-            intergal_anti_windup();
-        #endif
+            #else
+                intergal_anti_windup();
+            #endif
+        }
         u_d = kp*e + u_i + kd*de;
         if(fabs(u_d)>=u_max*0.99){
             u = sign(u_d)*u_max;
@@ -205,7 +213,7 @@ public:
     };
 
     int saturation_flag = 0;
-
+    int intergal_flag = 1;//1才會積分，不然保持積分值
 protected:
     int error_define = 1;
     /**
