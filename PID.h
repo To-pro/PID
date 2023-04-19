@@ -247,7 +247,7 @@ protected:
             integral_e = 0.0;
         }
     }else if (intergal_anti_windup_flag == clamping){
-        if (((fabs(u) >= u_max * 0.99) && (u * e <= 0.0))||(saturation_flag == 1 && (u * e <= 0.0))){
+        if (((fabs(u) >= u_max * 0.99) && (u * e <= 0.0))||(saturation_flag == 1)){
             integral_e = integral_e;
         }  
         else{
