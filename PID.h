@@ -211,7 +211,11 @@ public:
     double Output_u_d(){
         return u_d;
     };
-
+    void get_pid_gain(double *ptr_kp,double *ptr_ki,double *ptr_kd){
+        *ptr_kp=kp;
+        *ptr_ki=ki;
+        *ptr_kd=kd;
+    }
     int saturation_flag = 0;
     int intergal_flag = 1;//1才會積分，不然保持積分值
 protected:
