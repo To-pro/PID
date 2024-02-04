@@ -139,7 +139,7 @@ controller..intergal_anti_windup_flag_set(clamping);//此範例設定即默認�
 controller.error_define_set(1);//此範例設定即默認可省略
 controller.Init_pole(1.0,2.0,3.0,12.0);
 ```
-其中假設$|u|\leq 12.0$。因為部分設定是默認可以畫簡成
+其中假設$ |u| \leq 12.0 $。因為部分設定是默認可以畫簡成
 ``` c
 PID controller;
 controller.Init_pole(1.0,2.0,3.0,12.0);
